@@ -22,8 +22,8 @@ Amusez-vous bien ^^
 
 ===> 1
 
-- [ ] initialisez un nouveau dépôt privé sur GitHub et nommez le selon les mêmes consignes que les précédentes activités
-- [ ] profitez-en pour m'inviter en tant que collaborateur ainsi que: Maxence D, Hugo, Quentin, Raphaël
+- [x] initialisez un nouveau dépôt privé sur GitHub et nommez le selon les mêmes consignes que les précédentes activités
+- [x] profitez-en pour m'inviter en tant que collaborateur ainsi que: Maxence D, Hugo, Quentin, Raphaël
 
 Vous devrez pusher vos commits quotidiennement.
 

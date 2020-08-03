@@ -36,7 +36,7 @@
              * else ...
              *      - welcome message
              *      - button for add new movie
-             */
+             */ 
 
             ?>
         </section>
