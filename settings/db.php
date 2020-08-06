@@ -1,11 +1,19 @@
 <?php
 
-$host = "localhost";
-$dbname = "a08-hern"; // to adapt
-$login = "root";
-$mdp = "";
+// essaye de faire ça 
 
-/**
- * try connection
- * catch and display the error and stop process
- */
+$host= "localhost";
+$dbname = "a08_boud";
+$login = "a08_boud";
+$mdp = "mdp";
+
+
+try{
+$db = new PDO('mysql:host='.$host.';dbname='.$dbname.';charset=UTF8',$login, $mdp);
+}
+
+// si il y a une erreur tu fais ça 
+
+catch(Exception $e){
+    die("erreur:".$e->getMessage());
+}
