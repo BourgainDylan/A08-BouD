@@ -3,16 +3,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <?php include_once './templates/head.html'; ?>
+<?php include_once './templates/head.html'; ?>
 
-    <body>
+<body>
 
-        <?php include_once './templates/header.html'; ?>
-        <div class="d-flex justify-content-arround">
-        <?php include_once './templates/nav.html'; ?>
+  <?php include_once './templates/header.html'; ?>
+  <div class="d-flex justify-content-arround">
+    <?php include_once './templates/nav.html'; ?>
 
-        <section class="d-flex justify-content-center">
-            <?php
+    <section class="col-sm-9">
+   
+      <?php
 
 
               
@@ -36,7 +37,7 @@
 
               }
 
-                   if(isset($_POST['name'])){
+                   if(isset($_POST['formNew'])){
                 
                 $movieName = $_POST['name'];
                 $movieDate = $_POST['release_date'];
@@ -51,8 +52,7 @@
           
                 
                
-             $sql = ("INSERT INTO
-                    movies (name, release_date, duration, director, id_phase, image )
+             $sql = ("INSERT INTO movies (name, release_date, duration, director, id_phase, image )
                     VALUES ('$movieName', '$movieDate', '$movieDuration', '$movieRealisateur', '$moviePhase' ,'$movieImg')");
 
             $db->exec($sql);
@@ -70,32 +70,114 @@
               include_once './templates/movies/show.php';
            
             }
+            
 
 
 
             if(isset($_GET["delete"])){
 
+
+
               $delete = $_GET["delete"];
               
+   
               $sql= "DELETE FROM `movies` WHERE `movies`.`id` = $delete";
-              $sql = $db->query($sql);
-              $supprimertable = $sql -> fetch(PDO::FETCH_ASSOC);
-              
-        
+            
+              $db->exec($sql);
 
-              echo'film supprimé';
-             
+              echo'<div class="alert alert-success" role="alert">';
+              echo'le film a bien été supprimé';
+            echo'</div>';
+
+
           }
 
-         
 
+
+
+
+
+          
+
+          if(isset($_GET['edit'])){
+
+            $edit = $_GET['edit'];
+        
+            include_once './templates/movies/_form_edit.php';
+
+      
+          }
+         
+          if(isset($_POST['editMovie'])){
+            
+         
+         
+            $filmiD = $_POST['id'];
+            
+
+            $NewMovieName = $_POST['Newname'];
+            $NewDate = $_POST['NewDate'];
+            $NewDirector = $_POST['NewDirector'];
+            $NewDuration = $_POST['NewDuration'];
+            $NewId_phase = $_POST['NewId_phase'];
+            $movieImg = $_FILES['image']['name'];
+      
+
+
+            if(!empty($movieImg)){
+          
+            $EditSQL = $db ->prepare("UPDATE `movies`
+             SET `name`='$NewMovieName',
+                 `id_phase`='$NewId_phase' ,
+                 `release_date`='$NewDate',
+                  `director`='$NewDirector' , 
+                  `duration`='$NewDuration' ,
+                 `image` ='$movieImg'
+
+             WHERE `movies`.`id` = $filmiD");
+
+             
+            }
+            else{
+           
+            $EditSQL = $db ->prepare("UPDATE `movies`
+            SET `name`='$NewMovieName',
+                `id_phase`='$NewId_phase' ,
+                `release_date`='$NewDate',
+                 `director`='$NewDirector' , 
+                 `duration`='$NewDuration' 
+               
+
+            WHERE `movies`.`id` = $filmiD");
+            }
+          
+            $EditSQL -> execute();
+
+            echo'<div class="alert alert-success" role="alert">';
+            echo'le film a bien été modifié';
+          echo'</div>';
+            }
+    
+            
+            if(isset($_GET['q'])){
+   
+
+
+            include_once './templates/movies/search.php';
+            }
 
 
             ?>
-        </section>
-        </div>
-        <?php include_once './templates/footer.html'; ?>
+         
+    </section>
+  </div>
+  <?php include_once './templates/footer.html'; ?>
 
-    </body>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+</body>
 
 </html>

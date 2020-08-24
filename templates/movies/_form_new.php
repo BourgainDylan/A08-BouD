@@ -1,3 +1,4 @@
+
 <form action="index.php" method="POST" enctype="multipart/form-data">
 <div class="form-group">
     <label for="exampleInputPassword1">Nom</label>
@@ -22,10 +23,17 @@
 
  
 
-  <div class="form-group">
-    <label for="exampleInputPassword1">phase</label>
-    <input type="text" name="phase" class="form-control" id="exampleInputPassword1" placeholder="phase" required>
-  </div>
+
+
+  <div class="form-group d-flex flex-row ml-3">
+                <label for="phase" name="phase" class="mr-2">Phase</label>
+
+                <select class="form-control" name="phase">
+                <option value="1">I</option>
+                <option value="2">II</option>
+                <option value="3">III</option>
+                </select>
+            </div>
 
   <div class="form-group">
     <label for="exampleFormControlFile1">Affiche</label>
@@ -33,7 +41,7 @@
   </div>
  
 
-  <button type="submit"  value="none" class="btn btn-primary">Enregistrer</button>
+  <button type="submit" name="formNew"  value="none" class="btn btn-primary">Enregistrer</button>
 
  
 </form>
