@@ -13,7 +13,7 @@ foreach ($table as $row){
 
     echo '<div class="col-4">';
     echo' <h4>'.$row['name'].' </h4>'; 
-    echo' <a href="index.php?id='.$row['id'].'"> <img class="img-fluid" name="show" class="p-2" src="./uploads/'.$row['image'].'"></a>';
+    echo' <a href="index.php?id='.$row['id'].'"> <img class="img-fluid" name="show" class="p-2" src="./uploads_movies/'.$row['image'].'"></a>';
     echo '</div>';
 
  }

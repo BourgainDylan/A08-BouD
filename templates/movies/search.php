@@ -18,7 +18,7 @@ $i = 0;
 foreach($table as $key){
 
 echo' <h3> '.$table[$i]['name'].' </h3>';
-echo'<a href="index.php?id='.$key['id'].'"><img src="./uploads/'.$table[$i]['image'].'" /></a>';
+echo'<a href="index.php?id='.$key['id'].'"><img src="./uploads_movies/'.$table[$i]['image'].'" /></a>';
 
 
 $i++;
@@ -27,7 +27,9 @@ $i++;
 }
 
     if(empty($table)){
-        echo'aucun films trouvé!';
+       echo' <div class="alert alert-secondary text-center" role="alert">';
+      echo'Aucun film trouvé !';
+       echo'</div>';
     }
 
 

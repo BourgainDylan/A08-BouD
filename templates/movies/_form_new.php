@@ -1,5 +1,5 @@
 
-<form action="index.php" method="POST" enctype="multipart/form-data">
+<form class="w-25" action="index.php" method="POST" enctype="multipart/form-data">
 <div class="form-group">
     <label for="exampleInputPassword1">Nom</label>
     <input type="text" name="name" class="form-control" id="exampleInputPassword1" placeholder="nom" required>

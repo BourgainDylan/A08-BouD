@@ -12,15 +12,13 @@ $tableaufilm = $sql -> fetch(PDO::FETCH_ASSOC);
 
 
 echo'<h2> '.$tableaufilm['name'].'</h2>'; 
-echo'<img src="./uploads/'.$tableaufilm['image'].'" />';
+echo'<img src="./uploads_movies/'.$tableaufilm['image'].'" />';
 echo'<div>';
-echo'<p> Durée : '.$tableaufilm['duration'].'</p>';
+echo'<p> Durée : '.$tableaufilm['duration'].'</p>';  
 echo'<p> Date de sortie : '.$tableaufilm['release_date'].'</p>';
 echo'<p> Realisateur :'.$tableaufilm['director'].'</p>';
 echo'<p> Phase:'.$tableaufilm['id_phase'].'</p>';
-
-
-echo'<div class="d-flex justify-content-around">';
+echo'<div>';
 
 
 
@@ -28,7 +26,7 @@ $deleteMovie = $movieID;
 $editMovie = $movieID;
 
 echo'<a  href="index.php?edit='.$editMovie.'"> <button type="button" class="btn btn-warning">Editer</button></a>';
-echo'<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">supprimer</button>';
+echo'<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalmovie">supprimer</button>';
 
 
 
@@ -39,7 +37,7 @@ echo'</div>';
 
      <!-- Modal -->
 
-     <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+     <div class="modal fade" id="modalmovie" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">

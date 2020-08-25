@@ -11,7 +11,7 @@
   <div class="d-flex justify-content-arround">
     <?php include_once './templates/nav.html'; ?>
 
-    <section class="col-sm-9">
+    <section class="col-sm-8">
    
       <?php
 
@@ -48,7 +48,7 @@
 
 
 
-                move_uploaded_file($_FILES['image']['tmp_name'], "./uploads/".$movieImg);
+                move_uploaded_file($_FILES['image']['tmp_name'], "./uploads_movies/".$movieImg);
           
                 
                
@@ -87,17 +87,11 @@
 
               echo'<div class="alert alert-success" role="alert">';
               echo'le film a bien été supprimé';
-            echo'</div>';
+              echo'</div>';
 
 
           }
 
-
-
-
-
-
-          
 
           if(isset($_GET['edit'])){
 
@@ -114,7 +108,6 @@
          
             $filmiD = $_POST['id'];
             
-
             $NewMovieName = $_POST['Newname'];
             $NewDate = $_POST['NewDate'];
             $NewDirector = $_POST['NewDirector'];
@@ -122,7 +115,6 @@
             $NewId_phase = $_POST['NewId_phase'];
             $movieImg = $_FILES['image']['name'];
       
-
 
             if(!empty($movieImg)){
           
@@ -167,7 +159,147 @@
             }
 
 
+
+            if(isset($_GET['addActors'])){
+              
+
+
+            include_once './templates/movies/_form_new_actors.php';
+
+          }
+
+          if(isset($_POST['formNewActors'])){
+
+
+            $actors_name = $_POST['nameActor'];
+            $actors_surname = $_POST['surnameActor'];
+            // $actors_role =$_POST['role'];
+            $actors_Dob = $_POST['Dob'];
+            $actors_image = $_FILES['Actorimage']['name'];
+
+            move_uploaded_file($_FILES['Actorimage']['tmp_name'], "./uploads_actors/".$actors_image);
+          
+                
+       
+            $sql = ("INSERT INTO actors (last_name,first_name, dob,image)
+            VALUES ('$actors_name', '$actors_surname', '$actors_Dob','$actors_image')");
+
+    $db->exec($sql);
+
+
+            echo'<div class="alert alert-success" role="alert">';
+            echo'le film a bien été enregistré dans la bdd';
+            echo'</div>';
+
+          }
+
+
+          if(isset($_GET['listActors'])){
+
+            include_once './templates/movies/list_actors.php';
+            
+
+          }
+
+
+          if(isset($_GET['IDactors'])){
+          
+         
+          include_once './templates/movies/show_actors.php';
+           
+
+        }
+
+        if(isset($_GET['IdActorsDel'])){
+
+
+
+          $IdActorsDel = $_GET["IdActorsDel"];
+              
+      
+          }
+
+
+
+
+          
+          if(isset ($_GET['EditActors'] )){
+
+            $EditActors = $_GET['EditActors'];
+            include_once './templates/movies/_form_edit_actors.php';
+
+        };
+
+
+        if(isset ($_POST['editActorsButton'])){
+
+          $editactorsID = $_POST['editactorsvalue'];
+
+            
+          $NewFirstName = $_POST['NewfirstnameActor'];
+          $NewLastName = $_POST['NewsurnameActor'];
+          $NewDoB = $_POST['NewDob'];
+          $ActorsImg = $_FILES['NewActorimage']['name'];
+    
+          if(!empty($ActorsImg)){
+          
+            $EditSQL = $db ->prepare("UPDATE `actors`
+             SET `first_name`='$NewFirstName',
+                 `last_name`='$NewLastName' ,
+                 `dob`='$NewDoB',
+                 `image` ='$ActorsImg'
+
+             WHERE `actors`.`id` = $editactorsID");
+             
+            }else{
+           
+              $EditSQL = $db ->prepare("UPDATE `actors`
+            SET `first_name`='$NewFirstName',
+                 `last_name`='$NewLastName' ,
+                 `dob`='$NewDoB'
+            
+  
+              WHERE `movies`.`id` = $filmiD");
+              }
+
+          $EditSQL -> execute();
+
+          echo'<div class="alert alert-success" role="alert">';
+          echo'Acteur a bien été modifié';
+        echo'</div>';
+            
+
+            
+
+
+        }
+
+        if(isset($_GET['supprimer'])){
+
+
+        $delActors = $_GET["supprimer"];
+              
+   
+        $sql= "DELETE FROM `actors` WHERE `actors`.`id` = $delActors";
+      
+        $db->exec($sql);
+
+        echo'<div class="alert alert-success" role="alert">';
+        echo'le film a bien été supprimé';
+        echo'</div>';
+      }
+      
+
+        
+
+
+      
             ?>
+
+
+
+
+         
          
     </section>
   </div>
