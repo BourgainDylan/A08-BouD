@@ -11,7 +11,7 @@
   <div class="d-flex justify-content-arround">
     <?php include_once './templates/nav.html'; ?>
 
-    <section class="col-sm-8">
+    <section class="col-sm-10">
    
       <?php
 
@@ -163,6 +163,10 @@
             if(isset($_GET['addActors'])){
               
 
+              $sql = $db->prepare("SELECT movies.name FROM movies");
+              $sql -> execute();
+              $filmCollections = $sql -> fetchAll(PDO::FETCH_ASSOC);
+             
 
             include_once './templates/movies/_form_new_actors.php';
 
@@ -170,10 +174,10 @@
 
           if(isset($_POST['formNewActors'])){
 
-
-            $actors_name = $_POST['nameActor'];
-            $actors_surname = $_POST['surnameActor'];
-            // $actors_role =$_POST['role'];
+            $movies_name = $_POST['filmIdcollecton'];
+            $last_name = $_POST['last_name'];
+            $first_name = $_POST['first_name'];
+            $actors_role =$_POST['roleActors'];
             $actors_Dob = $_POST['Dob'];
             $actors_image = $_FILES['Actorimage']['name'];
 
@@ -182,17 +186,57 @@
                 
        
             $sql = ("INSERT INTO actors (last_name,first_name, dob,image)
-            VALUES ('$actors_name', '$actors_surname', '$actors_Dob','$actors_image')");
+            VALUES ('$last_name', '$first_name', '$actors_Dob','$actors_image')");
+            $db->exec($sql);
 
-    $db->exec($sql);
+
+            //ON RECCUPERE L'ID MOVIE DANS LA BDD
+
+            
+
+            $sql = $db->prepare(" SELECT movies.id
+            FROM movies
+            WHERE movies.name= '$movies_name'");
+
+            $sql -> execute();
+            $r1 = $sql -> fetchAll(PDO::FETCH_ASSOC);
+            
+            var_dump( $r1);
+           
+
+            foreach($r1 as $i => $value){
+              $id_movies = $r1[$i]['id'];
+
+            }
+
+            
+            //ON RECCUPERE L'ID ACTEUR DANS LA BDD
 
 
+            $sql = $db->prepare(" SELECT actors.id 
+            FROM actors 
+            WHERE actors.last_name =  '$last_name'");
+     
+            $sql -> execute();
+            $r2 = $sql -> fetchAll(PDO::FETCH_ASSOC);
+     
+
+            foreach($r2 as $i => $value){
+              $idActors = $r2[$i]['id'];
+
+            }
+
+
+            
+            $sql = ("INSERT INTO actors_movies (id_actors ,id_movies, role)
+            VALUES ('$idActors', '$id_movies', '$actors_role')");
+            $db->exec($sql);
             echo'<div class="alert alert-success" role="alert">';
-            echo'le film a bien été enregistré dans la bdd';
+            echo'Acteur enregistré dans la bdd';
             echo'</div>';
 
           }
-
+ 
 
           if(isset($_GET['listActors'])){
 
@@ -268,17 +312,11 @@
           echo'Acteur a bien été modifié';
         echo'</div>';
             
-
-            
-
-
         }
 
         if(isset($_GET['supprimer'])){
 
-
-        $delActors = $_GET["supprimer"];
-              
+        $delActors = $_GET["supprimer"];  
    
         $sql= "DELETE FROM `actors` WHERE `actors`.`id` = $delActors";
       
@@ -290,16 +328,9 @@
       }
       
 
-        
-
-
       
             ?>
 
-
-
-
-         
          
     </section>
   </div>

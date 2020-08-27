@@ -22,9 +22,6 @@
   </div>
 
  
-
-
-
   <div class="form-group d-flex flex-row ml-3">
                 <label for="phase" name="phase" class="mr-2">Phase</label>
 
