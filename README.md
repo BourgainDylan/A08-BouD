@@ -5,7 +5,7 @@
 - [x] nom du dépôt
 - [x] *commit "completed"*
 - [x] langage(s) utilisé(s)
-- [x] arborescence respectée
+- [] arborescence respectée
 - [x] taille des images optimisée
 ###### *Structure*
 - [x] *head*
@@ -46,6 +46,7 @@
   Pour ce qui est du code fait attention tu n’as pas la bonne indentation, 
   une indentation de 4 espaces est demandée alors que tu n'en as que 2.
   N'oublie pas les commentaires en Anglais.
+  Faît aussi attention avec ton arborescence !
 ###### *Commentaires*
 - Globalement le travail est fait, c'est bien. Fait attention et vérifie la bonne fonctionnalité de tes requêtes.
   Pour la création de films, précise bien pour les différents inputs si c'est un type="daté" ou encore un type="time".
