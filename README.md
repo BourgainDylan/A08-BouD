@@ -1,5 +1,5 @@
 # A08-BouD
-### De la part de moi
+### De la part de CHOPIN Corentin
 - [x] cloné le 28/08/2020
 ###### *Respect de la consigne*
 - [x] nom du dépôt
