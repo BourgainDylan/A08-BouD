@@ -5,7 +5,7 @@
 - [x] nom du dépôt
 - [x] *commit "completed"*
 - [x] langage(s) utilisé(s)
-- [] arborescence respectée
+- [ ] arborescence respectée
 - [x] taille des images optimisée
 ###### *Structure*
 - [x] *head*
@@ -17,14 +17,14 @@
 - *Create*
 - [x] *Read*
 - [x] *Update*
-- *Delete*
+- [ ]*Delete*
 - [x] *List*
 - [x] liste des acteurs pour un film
 ###### *Acteurs*
 - [x] *Create*
 - [x] *Read*
-- *Update*
-- *Delete*
+- [ ]*Update*
+- [ ]*Delete*
 - [x] *List*
 - [x] liste des films pour un acteur
 ###### *Pour aller plus loin*
@@ -34,8 +34,8 @@
 - [x] possibilité d'attribuer un rôle
 ###### *Code*
 - [x] bonne indentation
-- 4 espaces pour l'indentation
-- commentaires en anglais
+- [ ]4 espaces pour l'indentation
+- [ ]commentaires en anglais
 ###### *Bdd*
 - [x] consignes respectées
 - [x] exportée dans le dossier *sql*
