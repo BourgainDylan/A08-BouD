@@ -47,6 +47,6 @@
   une indentation de 4 espaces est demandée alors que tu n'en as que 2.
   N'oublie pas les commentaires en Anglais.
 ###### *Commentaires*
-- Globalement le travail est fait, c'est très bien. Fait attention et vérifie la bonne fonctionnalité de tes requêtes.
+- Globalement le travail est fait, c'est bien. Fait attention et vérifie la bonne fonctionnalité de tes requêtes.
   Pour la création de films, précise bien pour les différents inputs si c'est un type="daté" ou encore un type="time".
   Voilà bon travail dans l'ensemble
