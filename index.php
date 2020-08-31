@@ -7,19 +7,19 @@
 
 <body>
 
-  <?php include_once './templates/header.html'; ?>
-  <div class="d-flex justify-content-arround">
-    <?php include_once './templates/nav.html'; ?>
+    <?php include_once './templates/header.html'; ?>
+    <div class="d-flex justify-content-arround">
+        <?php include_once './templates/nav.html'; ?>
 
-    <section class="col-sm-10">
-   
-      <?php
+        <section class="col-sm-10">
+
+            <?php
 
 
               
-            if(isset($_GET["addmovie"])) {
+        if(isset($_GET["addmovie"])) {
 
-                include_once './templates/movies/_form_new.php';
+            include_once './templates/movies/_form_new.php';
 
               
             }
@@ -177,7 +177,6 @@
             $movies_name = $_POST['filmIdcollecton'];
             $last_name = $_POST['last_name'];
             $first_name = $_POST['first_name'];
-            $actors_role =$_POST['roleActors'];
             $actors_Dob = $_POST['Dob'];
             $actors_image = $_FILES['Actorimage']['name'];
 
@@ -303,7 +302,7 @@
                  `dob`='$NewDoB'
             
   
-              WHERE `movies`.`id` = $filmiD");
+              WHERE `actors`.`id` = $editactorsID");
               }
 
           $EditSQL -> execute();
@@ -318,7 +317,7 @@
 
         $delActors = $_GET["supprimer"];  
    
-        $sql= "DELETE FROM `actors` WHERE `actors`.`id` = $delActors";
+        $sql= " DELETE FROM actors WHERE actors.id = $delActors";
       
         $db->exec($sql);
 
@@ -331,15 +330,21 @@
       
             ?>
 
-         
-    </section>
-  </div>
-  <?php include_once './templates/footer.html'; ?>
+
+        </section>
+    </div>
+    <?php include_once './templates/footer.html'; ?>
 
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+    </script>
 
 </body>
 

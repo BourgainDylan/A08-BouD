@@ -3,7 +3,7 @@
             $sql -> execute();
             $editactorsform = $sql -> fetchAll(PDO::FETCH_ASSOC);
 
-            var_dump($editactorsform);
+         
 ?>
 
 <form class="w-25" action="index.php" method="POST" enctype="multipart/form-data">
@@ -21,12 +21,8 @@
         </div>
 
 
-        <div class="form-group">
-            <label for="exampleInputPassword1">Rôle</label>
-            <input type="text" name="NewroleActors" class="form-control" id="exampleInputPassword1" placeholder="inserez role"
-                required>
-        </div>
 
+<div>
         <input type="date" name="NewDob" value="2018-07-22">
     </div>
 
