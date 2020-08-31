@@ -40,44 +40,38 @@ $movieID = $_GET['id'];
     }
 
     echo'<div>'; 
-
-
-
-
     $deleteMovie = $movieID;
     $editMovie = $movieID;
-
     echo'<a  href="index.php?edit='.$editMovie.'"> <button type="button" class="btn btn-warning">Editer</button></a>';
     echo'<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalmovie">supprimer</button>';
-
-
-
-        echo'</div>';
+    echo'</div>';
 
 
     ?>
 
-     <!-- Modal -->
+<!-- Modal -->
 
-     <div class="modal fade" id="modalmovie" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Suppression film</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              êtes vous sûr de vouloir supprimer ?
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-
-
-              <a  href="index.php?delete=<?php  echo''.$deleteMovie.' '; ?> "> <button type="button" class="btn btn-primary">Supprimer</button></a>
-
-            </div>
-          </div>
-        </div>
+<div class="modal fade" id="modalmovie" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Suppression film</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+      <div class="modal-body">
+        êtes vous sûr de vouloir supprimer ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+
+
+        <a href="index.php?delete=<?php  echo''.$deleteMovie.' '; ?> "> <button type="button"
+            class="btn btn-primary">Supprimer</button></a>
+
+      </div>
+    </div>
+  </div>
+</div>

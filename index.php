@@ -25,84 +25,72 @@
             }
 
 
-              if(isset($_GET['accueil'])){
+        if(isset($_GET['accueil'])){
 
-                echo' <h1 class="d-flex justify-content-center">Bienvenue !</h1>';
+            echo' <h1 class="d-flex justify-content-center">Bienvenue !</h1>';
 
-              }
+        }
 
-              if(isset($_GET['list'])){
-                include_once './templates/movies/list.php';
+        if(isset($_GET['list'])){
+            include_once './templates/movies/list.php';
             
 
-              }
+        }
 
-                   if(isset($_POST['formNew'])){
+        if(isset($_POST['formNew'])){
                 
-                $movieName = $_POST['name'];
-                $movieDate = $_POST['release_date'];
-                $movieDuration = $_POST['duration'];
-                $movieRealisateur= $_POST['director'];
-                $moviePhase = $_POST['phase'];
-                $movieImg = $_FILES['image']['name'];
+            $movieName = $_POST['name'];
+            $movieDate = $_POST['release_date'];
+            $movieDuration = $_POST['duration'];
+            $movieRealisateur= $_POST['director'];
+            $moviePhase = $_POST['phase'];
+            $movieImg = $_FILES['image']['name'];
 
 
 
-                move_uploaded_file($_FILES['image']['tmp_name'], "./uploads_movies/".$movieImg);
-          
-                
-               
-             $sql = ("INSERT INTO movies (name, release_date, duration, director, id_phase, image )
+            move_uploaded_file($_FILES['image']['tmp_name'], "./uploads_movies/".$movieImg);
+            $sql = ("INSERT INTO movies (name, release_date, duration, director, id_phase, image )
                     VALUES ('$movieName', '$movieDate', '$movieDuration', '$movieRealisateur', '$moviePhase' ,'$movieImg')");
 
             $db->exec($sql);
-
-
             echo'<div class="alert alert-success" role="alert">';
             echo'le film a bien été enregistré dans la bdd';
-          echo'</div>';
+            echo'</div>';
              
                 
-            }
+        }
 
-            if(isset ($_GET['id'])){
+        if(isset ($_GET['id'])){
 
-              include_once './templates/movies/show.php';
+            include_once './templates/movies/show.php';
            
-            }
+        }
             
 
 
 
-            if(isset($_GET["delete"])){
+        if(isset($_GET["delete"])){
 
 
-
-              $delete = $_GET["delete"];
-              
-   
-              $sql= "DELETE FROM `movies` WHERE `movies`.`id` = $delete";
-            
-              $db->exec($sql);
-
-              echo'<div class="alert alert-success" role="alert">';
-              echo'le film a bien été supprimé';
-              echo'</div>';
+            $delete = $_GET["delete"];
+            $sql= "DELETE FROM `movies` WHERE `movies`.`id` = $delete";
+            $db->exec($sql);
+            echo'<div class="alert alert-success" role="alert">';
+            echo'le film a bien été supprimé';
+            echo'</div>';
 
 
-          }
+        }
 
 
-          if(isset($_GET['edit'])){
+        if(isset($_GET['edit'])){
 
             $edit = $_GET['edit'];
-        
             include_once './templates/movies/_form_edit.php';
 
-      
-          }
+        }
          
-          if(isset($_POST['editMovie'])){
+        if(isset($_POST['editMovie'])){
             
          
          
@@ -118,72 +106,63 @@
 
             if(!empty($movieImg)){
           
-            $EditSQL = $db ->prepare("UPDATE `movies`
-             SET `name`='$NewMovieName',
-                 `id_phase`='$NewId_phase' ,
-                 `release_date`='$NewDate',
-                  `director`='$NewDirector' , 
-                  `duration`='$NewDuration' ,
-                 `image` ='$movieImg'
-
-             WHERE `movies`.`id` = $filmiD");
+                $EditSQL = $db ->prepare("UPDATE `movies`
+                SET `name`='$NewMovieName',
+                    `id_phase`='$NewId_phase' ,
+                    `release_date`='$NewDate',
+                    `director`='$NewDirector' , 
+                    `duration`='$NewDuration' ,
+                    `image` ='$movieImg'
+                WHERE `movies`.`id` = $filmiD");
 
              
-            }
+        }
             else{
            
-            $EditSQL = $db ->prepare("UPDATE `movies`
-            SET `name`='$NewMovieName',
-                `id_phase`='$NewId_phase' ,
-                `release_date`='$NewDate',
-                 `director`='$NewDirector' , 
-                 `duration`='$NewDuration' 
-               
+                $EditSQL = $db ->prepare("UPDATE `movies`
+                SET `name`='$NewMovieName',
+                    `id_phase`='$NewId_phase' ,
+                    `release_date`='$NewDate',
+                    `director`='$NewDirector' , 
+                    `duration`='$NewDuration' 
+                WHERE `movies`.`id` = $filmiD");
 
-            WHERE `movies`.`id` = $filmiD");
-            }
+                }
+
           
             $EditSQL -> execute();
 
             echo'<div class="alert alert-success" role="alert">';
             echo'le film a bien été modifié';
-          echo'</div>';
-            }
+            echo'</div>';
+        }
     
             
-            if(isset($_GET['q'])){
+        if(isset($_GET['q'])){
    
-
-
             include_once './templates/movies/search.php';
-            }
 
+        }
 
-
-            if(isset($_GET['addActors'])){
+        if(isset($_GET['addActors'])){
               
-
-              $sql = $db->prepare("SELECT movies.name FROM movies");
-              $sql -> execute();
-              $filmCollections = $sql -> fetchAll(PDO::FETCH_ASSOC);
-             
-
+            $sql = $db->prepare("SELECT movies.name FROM movies");
+            $sql -> execute();
+            $filmCollections = $sql -> fetchAll(PDO::FETCH_ASSOC);
             include_once './templates/movies/_form_new_actors.php';
 
-          }
+        }
 
-          if(isset($_POST['formNewActors'])){
+        if(isset($_POST['formNewActors'])){
 
             $movies_name = $_POST['filmIdcollecton'];
             $last_name = $_POST['last_name'];
             $first_name = $_POST['first_name'];
             $actors_Dob = $_POST['Dob'];
             $actors_image = $_FILES['Actorimage']['name'];
-
             move_uploaded_file($_FILES['Actorimage']['tmp_name'], "./uploads_actors/".$actors_image);
           
                 
-       
             $sql = ("INSERT INTO actors (last_name,first_name, dob,image)
             VALUES ('$last_name', '$first_name', '$actors_Dob','$actors_image')");
             $db->exec($sql);
@@ -237,18 +216,18 @@
           }
  
 
-          if(isset($_GET['listActors'])){
+        if(isset($_GET['listActors'])){
 
             include_once './templates/movies/list_actors.php';
             
 
-          }
+        }
 
 
-          if(isset($_GET['IDactors'])){
+        if(isset($_GET['IDactors'])){
           
          
-          include_once './templates/movies/show_actors.php';
+            include_once './templates/movies/show_actors.php';
            
 
         }
@@ -257,7 +236,7 @@
 
 
 
-          $IdActorsDel = $_GET["IdActorsDel"];
+            $IdActorsDel = $_GET["IdActorsDel"];
               
       
           }
@@ -266,7 +245,7 @@
 
 
           
-          if(isset ($_GET['EditActors'] )){
+        if(isset ($_GET['EditActors'] )){
 
             $EditActors = $_GET['EditActors'];
             include_once './templates/movies/_form_edit_actors.php';
@@ -277,61 +256,53 @@
         if(isset ($_POST['editActorsButton'])){
 
           $editactorsID = $_POST['editactorsvalue'];
-
-            
           $NewFirstName = $_POST['NewfirstnameActor'];
           $NewLastName = $_POST['NewsurnameActor'];
           $NewDoB = $_POST['NewDob'];
           $ActorsImg = $_FILES['NewActorimage']['name'];
     
-          if(!empty($ActorsImg)){
+            if(!empty($ActorsImg)){
           
-            $EditSQL = $db ->prepare("UPDATE `actors`
-             SET `first_name`='$NewFirstName',
-                 `last_name`='$NewLastName' ,
-                 `dob`='$NewDoB',
-                 `image` ='$ActorsImg'
+                    $EditSQL = $db ->prepare("UPDATE `actors`
+                    SET `first_name`='$NewFirstName',
+                        `last_name`='$NewLastName' ,
+                        `dob`='$NewDoB',
+                        `image` ='$ActorsImg'
 
-             WHERE `actors`.`id` = $editactorsID");
-             
+                    WHERE `actors`.`id` = $editactorsID");
+                    
             }else{
            
-              $EditSQL = $db ->prepare("UPDATE `actors`
-            SET `first_name`='$NewFirstName',
-                 `last_name`='$NewLastName' ,
-                 `dob`='$NewDoB'
-            
-  
-              WHERE `actors`.`id` = $editactorsID");
-              }
+                    $EditSQL = $db ->prepare("UPDATE `actors`
+                    SET `first_name`='$NewFirstName',
+                        `last_name`='$NewLastName' ,
+                         `dob`='$NewDoB'
+                        WHERE `actors`.`id` = $editactorsID");
+            }
 
           $EditSQL -> execute();
 
           echo'<div class="alert alert-success" role="alert">';
           echo'Acteur a bien été modifié';
-        echo'</div>';
+          echo'</div>';
             
         }
 
         if(isset($_GET['supprimer'])){
 
-        $delActors = $_GET["supprimer"];  
-   
-        $sql= " DELETE FROM actors WHERE actors.id = $delActors";
-      
-        $db->exec($sql);
-
-        echo'<div class="alert alert-success" role="alert">';
-        echo'le film a bien été supprimé';
-        echo'</div>';
+            $delActors = $_GET["supprimer"];  
+            $sql= " DELETE FROM actors WHERE actors.id = $delActors";
+            $db->exec($sql);
+            echo'<div class="alert alert-success" role="alert">';
+            echo'le film a bien été supprimé';
+            echo'</div>';
       }
       
 
-      
             ?>
 
 
-        </section>
+    </section>
     </div>
     <?php include_once './templates/footer.html'; ?>
 
